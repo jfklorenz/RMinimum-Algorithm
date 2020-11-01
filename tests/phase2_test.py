@@ -15,8 +15,8 @@ import math
 #   Phase 2
 def phase2(L, k, cnt):
     """
-    Phase 2 of the RMinimum algorithm. It takes the loser set from phase 1 and generates n/2k subsets each of size k,.
-    Then it determines the smallest element of each subset using a perfectly balanced tournament tree.
+    Phase 2 of the RMinimum algorithm takes the loser set from phase 1 and generates n/2k subsets each of size k,
+    after which it determines the smallest element of each subset using a perfectly balanced tournament tree.
 
     :param L: Set of losers from phase 1
     :type L: List
@@ -56,13 +56,13 @@ def phase2(L, k, cnt):
             cnt[b] += 1
         M[i] = q.get()
 
-    return M, cnt
+    return M, subsets, cnt
 
 # ==================================================
 #   Unittest : Parameter
 @pytest.mark.parametrize(('n', 'k'), [
     #   Randomized input
-    (2 * random.randint(2**9, 2**15), random.randint(2, 2**10-1)),      # n in [2^10, 2^16], k in [2, 2^10 - 1]
+    (random.randint(2**10, 2**15), random.randint(2, 2**10-1)),      # n in [2^10, 2^16], k in [2, 2^10 - 1]
 
     #   Manuel input
     (2**10 - 2, 2**5), (2**10 + 2, 2**5),                               # n extreme
@@ -76,18 +76,29 @@ def test_p2(n, k):
     L = [i for i in range(n)]
     cnt = [0 for _ in range(n)]
 
-    L, M, cnt = phase2(L, k, cnt)
+    M, subsets, cnt = phase2(L, k, cnt)
 
     #   Test
-    assert len(L) == math.ceil(n / k)                           # |L| = n / k
-    assert max(len(l) for l in L) == k                          # max |L_i| == k
-    assert math.floor(math.log(k) / math.log(2)) <= max(cnt) <= math.ceil(math.log(k) / math.log(2))
+    # |L| = n / k
+    assert len(M) == math.ceil(n / k)
+
+    # max |L_i| == k
+    assert max(len(subset) for subset in subsets) == k
+
     # Tournament-Tree winner has log(|L_i|) comparisons
-    assert min(cnt) <= 1                                        # Some elements were compared at most once
+    assert math.floor(math.log(k) / math.log(2)) <= max(cnt) <= math.ceil(math.log(k) / math.log(2))
+
+    # Some elements were compared at most once
+    assert min(cnt) <= 1
+
+    # Each Element was compared at most log(k) times
     for c in cnt:
-        assert c <= math.ceil(math.log(k) / math.log(2))        # Each Element was compared at most log(k) times
-    for i in range(len(L)):
-        assert M[i] == min(L[i])                                # Is the min-element chosen really the min element of the bucket
+        assert c <= math.ceil(math.log(k) / math.log(2))
+
+    # Is the min-element chosen really the min element of the bucket
+    for i in range(len(M)):
+        assert M[i] == min(subsets[i])
+        
     return
 
 # ==================================================

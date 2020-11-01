@@ -174,7 +174,7 @@ def test_algo(n, k):
     #   Generating Testcase
     X = [i for i in range(n)]
 
-    minE, cnt = rminimum(X, k)
+    minE, cnt, rec = rminimum(X, k)
 
     work = sum(cnt) / 2
 

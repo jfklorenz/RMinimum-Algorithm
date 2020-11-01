@@ -47,7 +47,7 @@ def phase3(W, k, M, cnt):
     # Merge subsets
     Wnew = [w for sublist in W_i_filt for w in sublist]
 
-    return Wnew, cnt
+    return W_i, W_i_filt, Wnew, cnt
 
 # ==================================================
 #   Unittest : Parameter
@@ -79,23 +79,28 @@ def test_p3(n, k):
     W_split, W_split_filt, W_filt, cnt = phase3(W, k, M, cnt)
 
     #   Test
-    assert len(W_split) == math.ceil(n / k)                 # The amount of buckets is correct
-    assert max(len(w) for w in W_split) == k                # Buckets have the correct size
+    # The amount of buckets is correct
+    assert len(W_split) == math.ceil(n / k)
 
+    # Buckets have the correct size
+    assert max(len(w) for w in W_split) == k
 
+    # Filter test: no element in W[i] was larger than the min[i]
     for i in range(len(W_split_filt)):
         if W_split_filt[i] == []:
             assert True
         else:
-            assert max(W_split_filt[i]) < M[i]              # Filter test: no element in W[i] was larger than the min[i]
+            assert max(W_split_filt[i]) < M[i]
 
+    # Each min element was compared with each element in W[i]
     sum = 0
     for i in range(len(M)):
         sum += cnt[M[i]]
-    assert math.floor(n/k) * k <= sum <= math.ceil(n/k)*k   # Each min element was compared with each element in W[i]
+    assert math.floor(n/k) * k <= sum <= math.ceil(n/k)*k
 
+    # Each element from W was compared once against its respective min element
     for w in W:
-        assert cnt[w] == 1                                  # Each element from W was compared once against its respective min element
+        assert cnt[w] == 1
 
     return
 

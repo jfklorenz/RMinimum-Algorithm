@@ -56,6 +56,7 @@ def phase1(X, cnt):
     #   Manuel input
     2**10 - 2, 2**10 + 2                      # n extreme
 ])
+
 # ==================================================
 #   Unittest : Test
 def test_p1(n):

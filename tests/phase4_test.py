@@ -13,7 +13,7 @@ import math
 
 # ==================================================
 #   Phase 4
-def phase4(Wnew, k, n0, cnt, rec):
+def phase4(Wnew, k, n0, cnt):
     """
     Phase 4 of the RMinimum algorithm. It checks if the number of elements in Wnew is smaller than the
     logarithmic value of the original input size squared.
@@ -28,8 +28,6 @@ def phase4(Wnew, k, n0, cnt, rec):
     :type n0: INT
     :param cnt: Saves the fragile complexity for each element
     :type cnt: List
-    :param rec: Current count of recursive calls made already
-    :type rec: INT
 
     :return: mini, cnt, rec OR recursive call with Wnew as the new input set
     :param mini: The minimum element of the set Wnew
@@ -55,15 +53,14 @@ def phase4(Wnew, k, n0, cnt, rec):
             cnt[b] += 1
         mini = q.get()
 
-        return mini, cnt, rec
+        return mini, cnt
 
     else:
-        rec += 1
-        return -1, cnt, rec
+        return -1, cnt
 
 # ==================================================
 #   Unittest : Parameter
-@pytest.mark.parametrize(('n', 'n0'), [
+@pytest.mark.parametrize(('n','n0'), [
     #   Manuel input
     (2**10, 2**5), (2**16, 2**8 + 1),                  # |W'| < log2(n0)**2
     (2**10, 100), (2**16, 2**8),                       # |W'| = log2(n0)**2
@@ -76,7 +73,7 @@ def test_p4(n, n0):
     newW = [i for i in range(n)]
     cnt = [0 for _ in range(n)]
 
-    mine, cnt = phase4(newW, n0, cnt)
+    mine, cnt = phase4(newW, 16, n0, cnt)
 
     #   Test
     if n > (math.log(n0) / math.log(2))**2:             # Recursive call

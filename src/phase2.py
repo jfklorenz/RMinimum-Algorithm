@@ -13,8 +13,8 @@ import queue
 #   Phase 2
 def phase2(L, k, cnt):
     """
-    Phase 2 of the RMinimum algorithm. It takes the loser set from phase 1 and generates n/2k subsets each of size k,.
-    Then it determines the smallest element of each subset using a perfectly balanced tournament tree.
+    Phase 2 of the RMinimum algorithm takes the loser set from phase 1 and generates n/2k subsets each of size k,
+    after which it determines the smallest element of each subset using a perfectly balanced tournament tree.
 
     :param L: Set of losers from phase 1
     :type L: List
@@ -57,3 +57,8 @@ def phase2(L, k, cnt):
     return M, cnt
 
 # ==================================================
+
+L = [i for i in range(1024)]
+k = 16
+cnt = [0 for _ in range(1024)]
+print(phase2(L, k, cnt))
