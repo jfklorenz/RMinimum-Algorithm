@@ -1,4 +1,4 @@
-# Python-RMinimum
+# RMinimum-Algorithm
 
 ![GitHub status](https://img.shields.io/badge/status-release-success) ![GitHub top language](https://img.shields.io/github/languages/top/jfklorenz/python-rminimum) ![Travis](https://travis-ci.org/jfklorenz/RMinimum-Algorithm.svg?branch=master) ![GitHub](https://img.shields.io/github/license/jfklorenz/python-rminimum)
 
