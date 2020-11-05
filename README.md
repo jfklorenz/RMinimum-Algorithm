@@ -9,7 +9,7 @@ A reworked version of it can can be found on [arXiv.org](https://arxiv.org/abs/1
 
 It introduces the algorithms *RMinimum* and *RMedian* and also the concept of *fragile complexity*, i.e. the amount of times an element has been compared during the process of the algorithm.
 
-The package was published on **PyPi** and tested on **Travis CI**.
+The package was published on **PyPI** and tested on **Travis CI**.
 
 ---
 
