@@ -7,7 +7,9 @@ A **Python** implementation of the **RMinimum algorithm**.
 The algorithm is presented in the paper **Fragile Complexity of Comparison-Based Algorithms** by Prof. Dr. Ulrich Meyer and others in 2018. 
 A reworked version of it can can be found on [arXiv.org](https://arxiv.org/abs/1901.02857 "arXiv").
 
-It introduces the concept of *fragile complexity*, i.e. the amount of times an element has been compared during the process of the algorithm and also the algorithms *RMinimum* and *RMedian*.
+It introduces the algorithms *RMinimum* and *RMedian* and also the concept of *fragile complexity*, i.e. the amount of times an element has been compared during the process of the algorithm.
+
+The package was published on **PyPi** and tested on **Travis CI**.
 
 ---
 
