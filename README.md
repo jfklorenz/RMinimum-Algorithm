@@ -4,14 +4,10 @@
 
 A **Python** implementation of the **RMinimum algorithm**.
 
-The algorithm is presented in the paper **Fragile Complexity of Comparison-Based Algorithms** by Prof. Dr. Ulrich Meyer and others in 2018. 
+The algorithm is presented in the paper **Fragile Complexity of Comparison-Based Algorithms** by Prof. Dr. Ulrich Meyer and others in 2018.
 A reworked version can can be found on [arXiv.org](https://arxiv.org/abs/1901.02857 "arXiv.org").
 
 It introduces the algorithms *RMinimum* and *RMedian* and also the concept of *fragile complexity*, i.e. the amount of times an element has been compared during the process of the algorithm.
-
-The package was published on **PyPI** and tested on **Travis CI**.
-
----
 
 Folder | Content
 --- | ---
@@ -21,13 +17,14 @@ jupyter | *Jupyter Notebook* validation and test files
 src | *Python* source code
 tests | *PyTest* test files
 
+The package was published on **PyPI** and tested on **Travis CI**.
+
 ---
 
 ## Algorithm
-In the following we present RMinimum, a randomized recursive algorithm for finding the minimum among n distinct elements. The algorithm has a tuning parameter k(n) controlling the 
-trade-off between the expected fragile complexity f_min(n) of the minimum element and the maximum expected fragile complexity f_rem(n) of the remaining none-minimum elements; if n is clear 
-from the context, we use k instead of k(n). Depending on the choice of k, we obtain interesting trade-offs for the pair <E(f_min(n)) , max E(f_rem(n))> ranging from <O(ε^(−1)*loglog(n)), O(n_ε)> to 
-<O(log(n)/loglog(n)), O(log(n)/loglog(n))>. 
+In the following we present RMinimum, a randomized recursive algorithm for finding the minimum among n distinct elements. The algorithm has a tuning parameter k(n) controlling the
+trade-off between the expected fragile complexity f_min(n) of the minimum element and the maximum expected fragile complexity f_rem(n) of the remaining non-minimum elements; if n is clear from the context, we use k instead of k(n). Depending on the choice of k, we obtain interesting trade-offs for the pair <E(f_min(n)) , max E(f_rem(n))> ranging from <O(ε^(−1)*loglog(n)), O(n_ε)> to
+<O(log(n)/loglog(n)), O(log(n)/loglog(n))>.
 
 Given a total ordered set X of n distinct elements, RMinimum performs the following steps:
 
@@ -38,8 +35,7 @@ Given a total ordered set X of n distinct elements, RMinimum performs the follow
 
 ---
 
-## Complexity 
+## Complexity
 1. *Runtime:* RMinimum requires linear work w(n) = O(n).
 2. Let k(n) = n_ε for 0 < ε ≤ 1/2. Then RMinimum requires E(f_min(n)) = O(ε−1loglog(n)) comparisons for the minimum and E(f_rem(n)) = O(n_ε) for the remaining elements.
 3. Let k(n) = logn/loglogn. Then RMinimum requires E(f_min(n)) = O(log(n)/loglog(n)) comparisons for the minimum and E(f_rem(n)) = O(log(n)/loglog(n)) for the remaining elements.
-
